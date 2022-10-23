@@ -156,6 +156,16 @@
           const _this = this;
           const cdWidth = cd.offsetWidth;
 
+          // Xu ly quay / dung
+          const cdThumbAnimate = cdThumb.animate(
+            [{ tranform: "rotate(360deg)" }],
+            {
+              duration: 10000, // 10s
+              interations: Infinity,
+            }
+          );
+          cdThumbAnimate.pause();
+
           // Xu ly phong to / thu nho
           document.onscroll = function () {
             const scrollTop =
@@ -179,12 +189,14 @@
           audio.onplay = function () {
             _this.isPlaying = true;
             player.classList.add("playing");
+            cdThumbAnimate.play();
           };
 
           // Khi song duoc pause
           audio.onpause = function () {
             _this.isPlaying = false;
             player.classList.remove("playing");
+            cdThumbAnimate.pause();
           };
 
           // Khi tien do bai hat thay doi
